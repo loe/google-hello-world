@@ -1,4 +1,7 @@
-# A sample Gemfile
 source "http://rubygems.org"
 
-# gem "rails"
+gem 'sinatra'
+gem 'oauth'
+gem 'ruby-openid'
+gem 'ruby-openid-apps-discovery'
+gem 'rack-openid'
