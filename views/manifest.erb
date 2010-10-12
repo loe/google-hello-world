@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ApplicationManifest xmlns="http://schemas.google.com/ApplicationManifest/2009">
+
+  <!-- Support info to show in the marketplace & control panel -->
+  <Support>
+    <!-- URL for application setup as an optional redirect during the install -->
+    <Link rel="setup" href="https://app.onehubstaging.com/app/google/setup?domain=${DOMAIN_NAME}" />
+
+    <!-- URL for application configuration, accessed from the app settings page in the control panel -->
+    <!-- <Link rel="manage" href="http://app.onehubstaging.com/app/google/admin?domain=${DOMAIN_NAME}" />  -->
+
+    <!-- URL explaining how customers get support. -->
+    <Link rel="support" href="http://app.onehubstaging.com/app/google/support?domain=${DOMAIN_NAME}" />
+
+    <!-- URL that is displayed to admins during the deletion process, to specify policies such as data retention, how to claim accounts, etc. -->
+    <Link rel="deletion-policy" href="http://app.onehubstaging.com/app/google/deletion_policy?domain=${DOMAIN_NAME}" />
+  </Support>
+
+  <!-- Name and description pulled from message bundles -->
+  <Name>Onehub Workspaces (STAGING TESTING)</Name>
+  <Description>Customizable workspaces for online collaboration. Manage projects, share files and collaborate with others.</Description>
+
+  <!-- Show this link in Google's universal navigation for all users -->
+  <Extension id="navLink" type="link">
+    <Name>Onehub Workspaces</Name>
+    <Url>https://app.onehubstaging.com/app/sessions/create_openid?login[gapps_domain]=${DOMAIN_NAME}&amp;return_to=https://app.onehubstaging.com/app/home&amp;login[remember_me]=true</Url>
+    <!-- This app also uses the Calendar API -->
+    <Scope ref="calendarFeed"/>
+    <Scope ref="contactsFeed"/>
+  </Extension>
+
+  <!-- Declare our OpenID realm so our app is white listed -->
+  <Extension id="realm" type="openIdRealm">
+    <Url>http://app.onehubstaging.com</Url>
+  </Extension>
+
+  <!-- Need access to the Calendar feed -->
+  <Scope id="contactsFeed">
+    <Url>http://www.google.com/m8/feeds/</Url>
+    <Reason>This application can import your contact information.</Reason>
+  </Scope>
+
+  <!-- Need access to the Calendar feed -->
+  <Scope id="calendarFeed">
+    <Url>http://www.google.com/calendar/feeds/</Url>
+    <Reason>This application can import your contact information.</Reason>
+  </Scope>
+
+</ApplicationManifest>
