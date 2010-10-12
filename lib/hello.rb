@@ -22,7 +22,10 @@ require 'google_util'
 require 'sinatra/base'
 
 class Hello < Sinatra::Base
-
+  
+  CONSUMER_KEY = ENV['CONSUMER_KEY']
+  CONSUMER_SECRET = ENV['CONSUMER_SECRET']
+  
   enable :sessions
   
   helpers do
