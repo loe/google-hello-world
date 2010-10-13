@@ -125,6 +125,19 @@ class Hello < Sinatra::Base
     erb :events
   end
 
+  get '/users' do
+    require_authentication
+
+    oauth_consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET)
+    access_token = OAuth::AccessToken.new(oauth_consumer)
+    client = Google::Client.new(access_token, '2.0')
+    feed = client.get("https://apps-apis.google.com/a/feeds/andrewloe.com/user/2.0", {})
+    throw :halt, [500, "Unable to query user feed"] if feed.nil?
+    @users = ''
+    feed.write(@users)
+    erb :users
+  end
+
   # Generate a manifest for this deployment
   get '/manifest.xml' do
     content_type 'text/xml'

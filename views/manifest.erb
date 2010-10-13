@@ -11,8 +11,9 @@
   <!-- Show this link in Google's universal navigation for all users -->
   <Extension id="navLink" type="link">
     <Name>Hello World</Name>
-    <Url>http://onehubdev.com/openid_identifier=${DOMAIN_NAME}</Url>
+    <Url>http://onehubdev.com:9292/openid_identifier=${DOMAIN_NAME}</Url>
     <Scope ref="calendarAPI"/>
+    <Scope ref="userFeed"/>
   </Extension>
 
   <!-- Declare our OpenID realm so our app is white listed -->
@@ -25,4 +26,10 @@
     <Url>https://www.google.com/calendar/feeds/</Url>
     <Reason>This app displays the user's next upcoming Google Calendar appointment.</Reason>
   </Scope>
+ 
+  <Scope id="userFeed">
+    <Url>https://apps-apis.google.com/a/feeds/user/#readonly</Url>
+    <Reason>This application shows the domain users</Reason>
+  </Scope>
+ 
 </ApplicationManifest>
